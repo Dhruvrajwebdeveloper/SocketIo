@@ -1,0 +1,55 @@
+::-webkit-scrollbar {
+  width: 0.4rem;
+  height: 0.2rem;
+}
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.friendAvatar {
+  height: 3rem;
+  width: 3rem;
+}
+.img-logo {
+  width: 3rem;
+  height: 3rem;
+}
+.brand-imgContainer > h3 {
+  font-size: 1rem;
+}
+.contact-username {
+  font-size: 1rem;
+}
+.current-user-contact {
+  font-size: 1rem;
+}
+.contact-list {
+    background-color: #ffffff39;
+    transition: 0.25s ease-in-out;
+}
+.selected {
+  background-color: #9a86f3;
+}
+@media screen and (min-width: 500px) and (max-width: 610px) {
+  .img-logo {
+    width: 2rem;
+    height: 2rem;
+  }
+  .brand-imgContainer > h3 {
+    font-size: 0.8rem;
+  }
+
+  .friendAvatar {
+    height: 2rem;
+    width: 2rem;
+  }
+  .contact-username {
+    font-size: 0.8rem;
+  }
+}
+
+/* color:#ffffff39 */
+/* selected:#9186f3 */

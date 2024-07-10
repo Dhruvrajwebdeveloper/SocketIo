@@ -1,0 +1,15 @@
+.contact{
+    width: 25%;
+}
+.chatsection{
+    width:75%;
+}
+
+@media screen and (min-width:500px) and (max-width:945px) {
+    .contact{
+        width:35%;
+    }
+    .chatsection{
+        width: 65%;
+    }
+}

@@ -10,7 +10,7 @@ const ChatContainer = ({ currentChat }) => {
     <>
       {currentChat && (
         <div className="chatContainer" style={{
-            width:"9%",
+            width:"96%",
             height:"inherit",
           }}>
           <div className="chat-header" style={{
@@ -19,7 +19,7 @@ const ChatContainer = ({ currentChat }) => {
             height:"5rem",
             // padding:"0.5rem",
             alignItems:"center",
-            justifyContent:"space-between"
+            justifyContent:"space-between",
             // background:"yellow"
           }}>
             <div className="avatar" style={{

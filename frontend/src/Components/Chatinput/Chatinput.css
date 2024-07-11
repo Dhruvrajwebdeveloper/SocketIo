@@ -1,0 +1,7 @@
+.emoji-picker-container{
+    filter: drop-shadow(2px 2px 2px #9a86f3);
+}
+.emoji-picker-container .emoji-categories > button{
+    filter:contrast(0);
+}
+

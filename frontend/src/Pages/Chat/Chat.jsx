@@ -54,6 +54,7 @@ const Chat = () => {
         alignItems: "center",
         gap: "1rem",
         backgroundColor: "#131324",
+        // backgroundColor: "blue",
       }}
     >
       <div
@@ -67,7 +68,7 @@ const Chat = () => {
         <div
           className="contact"
           style={{
-            height: "inherit",
+            height: "inherit",  //85vh
             marginLeft: "10px",
             // overflowY:"scroll"
             backgroundColor: "#080420",
@@ -82,7 +83,7 @@ const Chat = () => {
         <div
           className="chatsection"
           style={{
-            height: "inherit",
+            height: "inherit",  //85vh
             display:"flex",
             justifyContent:"center",
             alignItems:"center"
@@ -90,7 +91,7 @@ const Chat = () => {
         >
         {
            isLoaded && currentChat === undefined ?(<Welcome currentUser={currentUser}/>
-          ):(<ChatContainer currentChat={currentChat}/>)
+          ):(<ChatContainer currentChat={currentChat} currentUser={currentUser}/>)
         }
         </div>
       </div>

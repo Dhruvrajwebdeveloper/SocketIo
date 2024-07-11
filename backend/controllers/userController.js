@@ -76,7 +76,7 @@ try {
 }
 const getAllUsers = async(req,res,next)=>{
   try {
-    console.log("getAllusers");
+    // console.log("getAllusers");
       const users = await User.find({_id: { $ne : req.params.id}}).select([
         "email",
         "username",

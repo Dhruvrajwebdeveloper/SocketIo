@@ -12,6 +12,9 @@ app.use(express.json());
 const userRoute = require("./routes/userRoute.js");
 app.use("/api/auth",userRoute)
 
+const messageRoute = require("./routes/messagesRoute.js");
+app.use("/api/messages",messageRoute);
+
 mongoose.connect(process.env.MONGO_URL,{
 
 }).then(()=>{

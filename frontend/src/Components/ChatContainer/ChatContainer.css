@@ -1,0 +1,8 @@
+.sended{
+    background-color: #4f04ff21;
+    align-self: flex-start;
+}
+.received{
+    background-color: #9900ff20;
+    align-self: flex-end;
+}

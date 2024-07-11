@@ -1,20 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Logout from "../Logout/Logout";
 import Chatinput from "../Chatinput/Chatinput";
 import Messages from "../Messages/Messages";
 import axios from "axios";
 import "./ChatContainer.css"
 import { getAllMessagesRoute, sendMessageRoute } from "../../Utils/APIRoutes";
+import {v4 as uuidv4} from "uuid";
 
-const ChatContainer = ({ currentChat, currentUser }) => {
+const ChatContainer = ({ currentChat, currentUser,socket }) => {
   const [messages, setMessages] = useState([]);
-  console.log(messages);
+  const [arrivalMessage,setArrivalMessage] = useState([null]);
+
+  const scrollRef = useRef()
   const handleSendMsg = async (msg) => {
     await axios.post(sendMessageRoute, {
       from: currentUser._id,
       to: currentChat._id,
       message: msg,
     });
+    socket.current.emit("send-msg",{
+      to:currentChat._id,
+      from:currentUser._id,
+      message:msg,
+    });
+    const msgs = [...messages];
+    msgs.push({fromSelf:true,message:msg});
+    setMessages(msgs);
   };
   useEffect(() => {
     async function fetchChat() {
@@ -24,10 +35,26 @@ const ChatContainer = ({ currentChat, currentUser }) => {
       });
       setMessages(response.data);
     }
-    if(currentUser){
+    if(currentChat){
       fetchChat();
     }      
   }, [currentChat]);
+
+  useEffect(()=>{
+    if(socket.current){
+      socket.current.on("msg-receive",(msg)=>{
+        setArrivalMessage({fromSelf:false,message:msg});
+      })
+    }
+  },[]);
+  useEffect(()=>{
+    arrivalMessage && setMessages((prev)=>[...prev,arrivalMessage])
+  },[arrivalMessage]);
+
+  useEffect(()=>{
+    scrollRef.current?.scrollIntoView({behaviour:"smooth"});
+  },[messages]);
+
   return (
     <>
       {currentChat && (
@@ -105,16 +132,18 @@ const ChatContainer = ({ currentChat, currentUser }) => {
                     color:"whitesmoke",
                     fontSize:"1rem",
                     fontWeight:"400",
-                    letterSpacing:"1px",
+                    letterSpacing:"1.4px",
                     width:"fit-content",
                     display:"flex",
                     alignItems:"center",
-                    padding:"3px",
-                    borderRadius:"4px",
+                    padding:"10px",
+                    borderRadius:"6px",
                     overflowWrap:"break-word",
                     maxWidth:"40%",
-                    textAlign:"justify"
+                    textAlign:"justify",
                    }}
+                   ref={scrollRef}
+                   key={uuidv4()}
                   >
                     <div className="content">
                       <p>{message.message}</p>
